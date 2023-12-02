@@ -1,23 +1,15 @@
 package main
 
 import (
-	"bufio"
+	util "aoc/utils"
 	"fmt"
-	"log"
-	"os"
 	"strconv"
 	"strings"
 	"unicode"
 )
 
 func main() {
-	file, err := os.Open("1.txt")
-	if err != nil {
-		log.Fatal(err)
-	}
-	defer file.Close()
-
-	scanner := bufio.NewScanner(file)
+	file, scanner := util.ReadFile("1.txt")
 	sum := 0
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -32,6 +24,7 @@ func main() {
 	}
 
 	fmt.Print(sum)
+	util.CloseFile(file)
 }
 
 func isDigit(character rune) bool {
